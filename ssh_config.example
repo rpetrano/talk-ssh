@@ -1,0 +1,16 @@
+# vim: set ft=sshconfig :
+
+Host public
+	User         robi
+	HostName     rpetrano.duckdns.org
+	Port         22222
+	IdentityFile /home/robi/.ssh/id_rsa
+
+Host secret
+	User robi
+	ProxyCommand ssh -q -W 10.3.1.2:%p public
+
+	LocalForward 13389 10.3.1.2:3389
+	LocalForward 23389 10.3.1.3:3389
+
+	DynamicForward 6676
